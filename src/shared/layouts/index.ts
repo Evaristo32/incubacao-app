@@ -1,1 +1,1 @@
-export {};
+export * from './single-page/singlePage';
