@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 import { Avatar, Box, Divider, Drawer, IconButton, List, styled, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
-import { ItemMenuLateral } from '../item-menu-lateral/itemMenuLateral';
+import { ItemMenuLateralComponent } from '../item-menu-lateral/itemMenuLateralComponet';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -18,7 +18,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
 }));
 
-export const MenuLateral: React.FC = () => {
+export const MenuLateralComponent: React.FC = () => {
 
     const theme = useTheme();
 
@@ -73,17 +73,17 @@ export const MenuLateral: React.FC = () => {
                         <List component="nav">
 
 
-                            <ItemMenuLateral toUrl="/home" label="Página inicial" >
+                            <ItemMenuLateralComponent toUrl="/home" label="Página inicial" >
                                 <HomeIcon />
-                            </ItemMenuLateral>
+                            </ItemMenuLateralComponent>
 
-                            <ItemMenuLateral toUrl="/Chocadeira" label="Chocadeira" >
+                            <ItemMenuLateralComponent toUrl="/Chocadeira" label="Chocadeira" >
                                 <AppRegistrationIcon />
-                            </ItemMenuLateral>
+                            </ItemMenuLateralComponent>
 
-                            <ItemMenuLateral toUrl="/incubacao" label="Incubação" >
+                            <ItemMenuLateralComponent toUrl="/incubacao" label="Incubação" >
                                 <DeviceThermostatIcon />
-                            </ItemMenuLateral>
+                            </ItemMenuLateralComponent>
 
                         </List>
                     </Box>

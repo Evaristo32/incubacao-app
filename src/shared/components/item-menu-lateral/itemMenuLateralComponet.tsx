@@ -12,7 +12,7 @@ type TItemMenuLateralProps = {
     onClick?: (() => void) | undefined;
 };
 
-export const ItemMenuLateral: React.FC<TItemMenuLateralProps> = ({ label, toUrl, onClick, children }) => {
+export const ItemMenuLateralComponent: React.FC<TItemMenuLateralProps> = ({ label, toUrl, onClick, children }) => {
 
     const navigate = useNavigate();
     const resolverdPath = useResolvedPath(toUrl);
