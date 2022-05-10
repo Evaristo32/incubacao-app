@@ -1,18 +1,27 @@
 
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import SaveIcon from '@mui/icons-material/Save';
 import { Box, Button, Container, Paper, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { BreadcrumbComponent, TBreadcrumbComponent } from '../../components';
-import AddIcon from '@mui/icons-material/Add';
+
 
 type TSinglePageProps = {
     titulo?: string;
     breadcrumb?: TBreadcrumbComponent;
     children?: React.ReactNode;
-    adiciona?: boolean;
-    nomeBotao?: string;
-    onSubmit?: () => void;
+    mostrarSubmit?: boolean;
+    nomeSubmit?: string;
+    onClickSubmit?: () => void;
+    iconSubmit?: React.ReactNode;
+    mostarVoltar?: boolean;
+    nomeVoltar?: string;
+    onClickVoltar?: () => void;
+    iconVoltar?: React.ReactNode;
 };
 
-export const SinglePage: React.FC<TSinglePageProps> = ({ children, breadcrumb, titulo, adiciona, nomeBotao ='Novo', onSubmit }) => {
+export const SinglePage: React.FC<TSinglePageProps> = ({ children, breadcrumb, titulo,
+    mostrarSubmit, nomeSubmit = 'Salvar', onClickSubmit, iconSubmit,
+    mostarVoltar, nomeVoltar = 'Voltar', onClickVoltar, iconVoltar }) => {
 
     const theme = useTheme();
     const smDown = useMediaQuery(theme.breakpoints.down("sm"));
@@ -24,7 +33,7 @@ export const SinglePage: React.FC<TSinglePageProps> = ({ children, breadcrumb, t
 
                 <Box height="88vh" marginLeft={smDown ? theme.spacing(14) : theme.spacing(28)}>
 
-                
+
 
                     <Box
                         gap={1}
@@ -39,13 +48,19 @@ export const SinglePage: React.FC<TSinglePageProps> = ({ children, breadcrumb, t
 
                         <BreadcrumbComponent paths={breadcrumb?.paths}></BreadcrumbComponent>
 
-                        {adiciona &&
-                            (
-                                <Box flex={1} display="flex" justifyContent="end" >
-                                    <Button variant="contained" endIcon={<AddIcon />} onClick={onSubmit}>{nomeBotao}</Button>
-                                </Box>
-                            )
-                        }
+                        <Box flex={1} display="flex" justifyContent="end">
+                            {mostarVoltar &&
+                                (
+                                    <Box padding={1} > <Button variant="contained" endIcon={iconVoltar ? iconVoltar : <KeyboardBackspaceIcon />} onClick={onClickVoltar}>{nomeVoltar}</Button></Box>
+                                )
+                            }
+
+                            {mostrarSubmit &&
+                                (
+                                    <Box padding={1} >   <Button variant="contained" endIcon={iconSubmit ? iconSubmit : <SaveIcon />} onClick={onClickSubmit}>{nomeSubmit}</Button></Box>
+                                )
+                            }
+                        </Box>
                     </Box>
 
                     <Typography
@@ -57,7 +72,7 @@ export const SinglePage: React.FC<TSinglePageProps> = ({ children, breadcrumb, t
                         variant={smDown ? 'h5' : mdDown ? 'h4' : 'h3'}
                     >{titulo}</Typography>
 
-                    <Box  marginTop={theme.spacing(6)} flex={1} overflow="auto">
+                    <Box marginTop={theme.spacing(6)} flex={1} overflow="auto">
                         {children}
                     </Box>
                 </Box>

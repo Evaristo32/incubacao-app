@@ -21,6 +21,33 @@ const getById = async (id: number): Promise<TChocadeira | Error> => {
     }
 };
 
+const save = async (chocadeira: TChocadeira): Promise<number | Error> => {
+    try {
+        const { data } = await Api.post<number>(`chocadeira`, chocadeira);
+        return data;
+    } catch (error) {
+        return new Error("Problemas ao tentar cadastrar chocadeiras.");
+    }
+};
+
+const update = async (chocadeira: TChocadeira): Promise<number | Error> => {
+    try {
+        const { data } = await Api.put<number>(`chocadeira`, chocadeira);
+        return data;
+    } catch (error) {
+        return new Error("Problemas ao tentar alterar chocadeiras.");
+    }
+};
+
+const deleteById = async (id: number): Promise<TChocadeira | Error> => {
+    try {
+        const { data } = await Api.delete<TChocadeira>(`chocadeira/${id}`);
+        return data;
+    } catch (error) {
+        return new Error("Problemas ao tentar deletar chocadeiras.");
+    }
+};
+
 export const ChocadeiraService = {
-    getAll, getById
+    getAll, getById, save, update, deleteById
 }

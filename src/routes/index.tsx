@@ -9,6 +9,7 @@ export const AppRoutes = () => {
             <Route path="/home" element={<HomePage />} />
             <Route path="/chocadeira" element={<ListagemChocadeiraPage />} />
             <Route path="/chocadeira/cadastro" element={<CadastrarChocadeiraPage />} />
+            <Route path="/chocadeira/editar/:id" element={<CadastrarChocadeiraPage />} />
             <Route path="/incubacao" element={<IncubacaoPage />} />
             <Route path="/suporte" element={<IncubacaoPage />} />
             <Route path="*" element={<Navigate to="/suporte" />} />

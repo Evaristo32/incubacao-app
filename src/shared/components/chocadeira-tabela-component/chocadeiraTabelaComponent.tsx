@@ -11,6 +11,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 import { TChocadeira } from '../../services/apis/model/types';
 
 
@@ -40,6 +41,8 @@ interface IProprts {
 
 export const ChocadeiraTabelaComponent: React.FC<IProprts> = ({ data }) => {
 
+    const navigate = useNavigate();
+
     return (
         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
 
@@ -60,9 +63,8 @@ export const ChocadeiraTabelaComponent: React.FC<IProprts> = ({ data }) => {
                                 <StyledTableCell>{row.marca}</StyledTableCell>
                                 <StyledTableCell>{row.capacidadeTotal}</StyledTableCell>
                                 <StyledTableCell align="center" component="th" scope="row">
-                                    <IconButton aria-label="delete"><EditIcon /></IconButton>
+                                    <IconButton aria-label="edit" onClick={() => navigate(`/chocadeira/editar/${row.id}`)}><EditIcon /></IconButton>
                                     <IconButton aria-label="delete"><DeleteIcon /></IconButton>
-                                    <IconButton aria-label="delete"><VisibilityIcon /></IconButton>
                                 </StyledTableCell>
 
                             </StyledTableRow>

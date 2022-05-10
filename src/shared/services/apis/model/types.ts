@@ -1,6 +1,6 @@
 
 
-export type TChocadeira = {
+export type TChocadeira  ={
     id?: number;
     codigo?: string;
     marca?: string;
