@@ -1,11 +1,13 @@
+import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { FormularioIncubacaoComponent } from "../../shared/components";
 import { SinglePage } from "../../shared/layouts";
 
 
-export const IncubacaoPage = () => {
-   
+export const ListagemIncubacaoPage = () => {
+
     const navigate = useNavigate();
-    
+
     const breadcrumb = {
         paths: [
             { rota: "Home", path: "home", rotaAtual: false },
@@ -16,11 +18,11 @@ export const IncubacaoPage = () => {
     const onClickVoltar = () => navigate('/home');
 
     return (
-        <SinglePage breadcrumb={breadcrumb} titulo={"Cadastrar Incubação"}
+        <SinglePage breadcrumb={breadcrumb} titulo={"Pesquisar Incubação"}
             mostarVoltar onClickVoltar={onClickVoltar}>
-            {/* <Box>
-                <FormularioChocadeiraComponent id={id} onClickSubmit={onClickSubmit}></FormularioChocadeiraComponent>
-            </Box> */}
+            <Box>
+                <FormularioIncubacaoComponent></FormularioIncubacaoComponent>
+            </Box>
         </SinglePage>
     );
 }

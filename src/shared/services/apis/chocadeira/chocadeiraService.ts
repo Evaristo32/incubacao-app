@@ -39,7 +39,7 @@ const update = async (chocadeira: TChocadeira): Promise<number | Error> => {
     }
 };
 
-const deleteById = async (id: number): Promise<TChocadeira | Error> => {
+const deleteById = async (id: number | undefined): Promise<TChocadeira | Error> => {
     try {
         const { data } = await Api.delete<TChocadeira>(`chocadeira/${id}`);
         return data;

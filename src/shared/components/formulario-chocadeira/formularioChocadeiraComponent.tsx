@@ -20,13 +20,15 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
     const chocadeiraSchema = yup.object().shape({
         codigo: yup
             .string()
-            .required().max(6),
+            .required('O campo é obrigatório.')
+            .max(6),
         marca: yup
             .string()
-            .required().min(5).max(50),
+            .required('O campo é obrigatório.')
+            .min(5, 'O campode deve conter no minimo 5 caracteres!!!').max(50),
         capacidadeTotal: yup
             .number()
-            .required()
+            .required('O campo é obrigatório.')
             .positive()
             .integer()
     });
@@ -41,7 +43,6 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
 
     useEffect(() => {
         if (id) {
-
             ChocadeiraService.getById(parseInt(id))
                 .then((result) => {
                     if (result instanceof Error) {
@@ -51,7 +52,6 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
                     formik.setValues({ ...result });
                     console.log(result);
                 });
-
         }
     }, []);
 
@@ -64,6 +64,8 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
                         <TextField id="codigo"
                             name="codigo" label="Código"
                             error={formik.errors.codigo !== '' && formik.touched.codigo} helperText={formik.errors.codigo !== '' && formik.touched.codigo ? formik.errors.codigo : ''}
+                            disabled={!!formik.values.id}
+                            inputProps={{ maxLength: 6 }}
                             variant="standard" fullWidth
                             onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.codigo} />
                     </Grid>
@@ -72,6 +74,7 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
                         <TextField id="marca" name="marca" label="Marca"
                             error={formik.errors.marca !== '' && formik.touched.marca} helperText={formik.errors.marca !== '' && formik.touched.marca ? formik.errors.marca : ''}
                             variant="standard" fullWidth
+                            inputProps={{ maxLength: 50 }}
                             onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.marca} />
                     </Grid>
 
