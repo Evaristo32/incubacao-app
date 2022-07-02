@@ -8,7 +8,6 @@ import { TChocadeira } from "../../shared/services/apis/model/types";
 
 export const CadastrarChocadeiraPage = () => {
 
-    // const [chocadeira, setChocadeira] = useState<TChocadeira>({ id: undefined, codigo: '', marca: '', capacidadeTotal: undefined });
     const navigate = useNavigate();
     const { id = '0' } = useParams<string>();
 
@@ -21,7 +20,7 @@ export const CadastrarChocadeiraPage = () => {
     }
 
     const onClickSubmit = (chocadeira: TChocadeira) => {
-
+        console.log(chocadeira);
         if (chocadeira.id) {
             ChocadeiraService.update(chocadeira)
                 .then((result) => {

@@ -1,8 +1,15 @@
 export * from './menu-lateral/menuLateralComponent';
-export * from './item-menu-lateral/itemMenuLateralComponet';
+export * from './menu-lateral/itemMenuLateralComponet';
+
 export * from './breadcrumb/breadcrumbComponent';
-export * from './filtrar-chocadeira/filtrarChocadeiraComponent';
-export * from './chocadeira-tabela-component/chocadeiraTabelaComponent';
-export * from './formulario-chocadeira/formularioChocadeiraComponent';
-export * from './formulario-incubacao/formularioincubacaoComponent';
+
+export * from './filtros/chocadeira/filtrarChocadeiraComponent';
+export * from './filtros/raca/filtrarRacaComponent';
+
+export * from './tabelas/chocadeira/chocadeiraTabelaComponent';
+export * from './tabelas/raca/racaTabelaComponent';
+export * from './tabelas/item-incubacao/itemIncubacaoTabelaComponent';
+
+export * from './formulario/chocadeira/formularioChocadeiraComponent';
+export * from './formulario/incubacao/formularioIncubacaoComponent';
 

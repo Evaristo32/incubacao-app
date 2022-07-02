@@ -4,10 +4,11 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import DeviceThermostatIcon from '@mui/icons-material/DeviceThermostat';
 import HomeIcon from '@mui/icons-material/Home';
 import MenuIcon from '@mui/icons-material/Menu';
+import PetsIcon from '@mui/icons-material/Pets';
 
 import { Avatar, Box, Divider, Drawer, IconButton, List, styled, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
-import { ItemMenuLateralComponent } from '../item-menu-lateral/itemMenuLateralComponet';
+import { ItemMenuLateralComponent } from './itemMenuLateralComponet';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -75,6 +76,10 @@ export const MenuLateralComponent: React.FC = () => {
 
                             <ItemMenuLateralComponent toUrl="/home" label="Página inicial" >
                                 <HomeIcon />
+                            </ItemMenuLateralComponent>
+
+                            <ItemMenuLateralComponent toUrl="/raca" label="Raça" >
+                                <PetsIcon />
                             </ItemMenuLateralComponent>
 
                             <ItemMenuLateralComponent toUrl="/Chocadeira" label="Chocadeira" >

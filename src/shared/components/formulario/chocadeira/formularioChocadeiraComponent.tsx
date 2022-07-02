@@ -3,10 +3,8 @@ import { Box, Button, Grid, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import { useEffect } from "react";
 import * as yup from 'yup';
-import { ChocadeiraService } from '../../services/apis/chocadeira/chocadeiraService';
-import { TChocadeira } from "../../services/apis/model/types";
-
-
+import { ChocadeiraService } from '../../../services/apis/chocadeira/chocadeiraService';
+import { TChocadeira } from "../../../services/apis/model/types";
 
 interface Props {
     id?: string;
@@ -54,7 +52,6 @@ export const FormularioChocadeiraComponent: React.FC<Props> = ({ id, onClickSubm
                 });
         }
     }, []);
-
 
     return (
         <Box>

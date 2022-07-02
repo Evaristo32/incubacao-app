@@ -21,7 +21,7 @@ export type Properts = {
     mensagem?: string;
 }
 
-export const ExcluirChocadeira: React.FC<Properts> = ({ onRemove, onClose, open, mensagem }) => {
+export const ExcluirRegistro: React.FC<Properts> = ({ onRemove, onClose, open, mensagem }) => {
     return (
         <Modal
             open={open}

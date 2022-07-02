@@ -11,9 +11,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ChocadeiraService } from '../../services/apis/chocadeira/chocadeiraService';
-import { TChocadeira } from '../../services/apis/model/types';
-import { ExcluirChocadeira } from '../excluir-chocadeira/excluirChocadeira';
+import { TChocadeira, TRaca } from '../../../services/apis/model/types';
+import { RacaService } from '../../../services/apis/raca/racaService';
+import { ExcluirRegistro } from '../../excluir/excluirRegistro';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -24,6 +24,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.body}`]: {
         fontSize: 14,
     },
+    ['width']:'30px'
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -40,43 +41,43 @@ interface IProprts {
     filtros?: TChocadeira;
 }
 
-export const ChocadeiraTabelaComponent: React.FC<IProprts> = ({ }) => {
+export const RacaTabelaComponent: React.FC<IProprts> = ({ }) => {
 
     const navigate = useNavigate();
     const [isOpen, setOpen] = useState<boolean>(false);
-    const [chocadeira, setChocadeira] = useState<TChocadeira>({});
-    const [chocadeiras, setChocadeiras] = useState<TChocadeira[]>([]);
+    const [raca, setRaca] = useState<TRaca>({});
+    const [racas, setRacas] = useState<TRaca[]>([]);
 
     useEffect(() => {
-        buscarChocadeiras();
+        buscarRacas();
     }, [])
 
-    const buscarChocadeiras = () => {
-        ChocadeiraService.getAll()
+    const buscarRacas = () => {
+        RacaService.getAll()
             .then((result) => {
                 if (result instanceof Error) {
                     alert(result.message);
                     return;
                 }
-                setChocadeiras(result);
+                setRacas(result);
             });
     }
 
     const handleOnRemove = () => {
-        ChocadeiraService.deleteById(chocadeira.id).then((res) => {
+        RacaService.deleteById(raca.id).then((res) => {
             if (res instanceof Error) {
                 alert(res.message);
                 setOpen(false);
                 return;
             }
-            buscarChocadeiras();
+            buscarRacas();
             setOpen(false);
         });
     }
 
-    const handleOpenModal = (row: TChocadeira) => {
+    const handleOpenModal = (row: TRaca) => {
         setOpen(true);
-        setChocadeira(row);
+        setRaca(row);
     }
 
     return (
@@ -86,20 +87,18 @@ export const ChocadeiraTabelaComponent: React.FC<IProprts> = ({ }) => {
                 <Table sx={{ minWidth: 700 }} aria-label="customized table">
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell>Código</StyledTableCell>
-                            <StyledTableCell>Marca</StyledTableCell>
-                            <StyledTableCell>Capacidade</StyledTableCell>
+                            <StyledTableCell >Nome</StyledTableCell>
+                            <StyledTableCell>Descrição</StyledTableCell>
                             <StyledTableCell align="center">Ações</StyledTableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {chocadeiras?.map((row, index) => (
+                        {racas?.map((row, index) => (
                             <StyledTableRow key={index}>
-                                <StyledTableCell>{row.codigo}</StyledTableCell>
-                                <StyledTableCell>{row.marca}</StyledTableCell>
-                                <StyledTableCell>{row.capacidadeTotal}</StyledTableCell>
+                                <StyledTableCell>{row.nome}</StyledTableCell>
+                                <StyledTableCell>{row.descricao}</StyledTableCell>
                                 <StyledTableCell align="center" component="th" scope="row">
-                                    <IconButton aria-label="edit" onClick={() => navigate(`/chocadeira/editar/${row.id}`)}>
+                                    <IconButton aria-label="edit" onClick={() => navigate(`/raca/editar/${row.id}`)}>
                                         <EditIcon />
                                     </IconButton>
                                     <IconButton aria-label="delete" onClick={() => handleOpenModal(row)}>
@@ -112,8 +111,8 @@ export const ChocadeiraTabelaComponent: React.FC<IProprts> = ({ }) => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <ExcluirChocadeira open={isOpen} onClose={(() => setOpen(false))} onRemove={handleOnRemove}
-                mensagem={'Deseja excluir chocadeira com código (' + chocadeira.codigo + ') da marca (' + chocadeira.marca + ')?'} />
+            <ExcluirRegistro open={isOpen} onClose={(() => setOpen(false))} onRemove={handleOnRemove}
+                mensagem={'Deseja excluir a raça com o nome (' + raca.nome + ')?'} />
         </Paper>
     );
 }

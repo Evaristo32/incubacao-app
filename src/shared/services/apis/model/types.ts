@@ -7,6 +7,12 @@ export type TChocadeira = {
     capacidadeTotal?: number;
 }
 
+export type TRaca = {
+    id?: number;
+    nome?: string;
+    descricao?: string;
+}
+
 export type TIncubacao = {
     id?: number;
     chocadeira?: TChocadeira;
@@ -18,6 +24,25 @@ export type TIncubacao = {
 
 export type TItemIncubacao = {
     id?: number;
-    raca?: string;
+    raca?: TRaca;
     quantidade?: number;
+}
+
+export type TCadastroIncubacao = {
+
+    idChocadeira?: number;
+    inicio?: Date;
+    itens?: TItemIncubacaoCadastro[];
+}
+
+export type TItemIncubacaoCadastro = {
+    idRaca?: number;
+    quantidade?: number;
+}
+
+
+export type TFiltroIncubacao = {
+    idChocadeira?: number;
+    inicio?: Date;
+    idRaca?: number;
 }
